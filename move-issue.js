@@ -4,11 +4,11 @@ import { graphql } from "@octokit/graphql";
 const testTokenFineGrain = "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";
 const testTokenClassic = "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";
 
-// const octokitGraphql = graphql.defaults({
-//   headers: {
-//     authorization: `Bearer ${testTokenClassic}`,
-//   },
-// });
+const octokitGraphql = graphql.defaults({
+  headers: {
+    authorization: `Bearer ${testTokenClassic}`,
+  },
+});
 
 function run() {
   const issueID = process.env.ISSUE_ID;
