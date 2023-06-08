@@ -1,27 +1,24 @@
-name: Move Issue to Another Project
+name: Move Issue
 on:
   issues:
     types:
       - milestoned
 
 jobs:
-  move-issue:
+  moveIssue:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
+      - name: Set up environment variables
+        id: env
+        run: |
+          echo "ISSUE_ID=${{ github.event.issue.node_id }}" >> $GITHUB_ENV
+          echo "TARGET_PROJECT_ID=${{ secrets.TARGET_PROJECT_ID }}" >> $GITHUB_ENV
+          echo "MILESTONE_TITLE=${{ github.event.issue.milestone.title }}" >> $GITHUB_ENV
 
       - name: Move Issue
-        env:
-          GITHUB_TOKEN: ${{ secrets.SEHA_TOKEN }}
-          FROM_PROJECT_ID: ${{ secrets.FROM_PROJECT_ID }}
-          TO_PROJECT_ID: ${{ secrets.TO_PROJECT_ID }}
         run: node move-issue.js
-
-
-
+        env:
+          GITHUB_TOKEN: ${{ secrets.MOVE_ISSUE_TOKEN }} # Required for repository access
