@@ -6,7 +6,7 @@ const testTokenClassic = "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";
 
 const octokitGraphql = graphql.defaults({
   headers: {
-    authorization: `Bearer ${testTokenClassic}`,
+    authorization: `Bearer ${testTokenFineGrain}`,
   },
 });
 
@@ -39,7 +39,7 @@ async function moveIssue(projectID, issueID) {
 
   const response = await graphql(mutation, {
     headers: {
-      authorization: `Bearer ${testTokenClassic}`,
+      authorization: `Bearer ${testTokenFineGrain}`,
     },
   });
 
