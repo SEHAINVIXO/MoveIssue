@@ -17,7 +17,7 @@ function run() {
 
   if (milestoneTitle === "operations") {
     try {
-      moveIssue();
+      moveIssue(projectID, issueID);
     } catch (error) {
 
     }
@@ -26,7 +26,7 @@ function run() {
   }
 }
 
-async function moveIssue() {
+async function moveIssue(projectID, issueID) {
 
   const mutation = `
     mutation moveIssue {
