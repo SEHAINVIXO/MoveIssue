@@ -1,24 +1,22 @@
-name: Move Issue
+name: Auto Assign to aXis Board
+
 on:
   issues:
-    types:
-      - milestoned
+    types: [milestoned]
+    
+env:
+  MY_GITHUB_TOKEN: ${{ secrets.GHPROJECT_TOKEN }}
 
 jobs:
-  moveIssue:
+  # uses: https://github.com/actions/add-to-project
+  add-to-project:
+    name: Add issue to aXis project
     runs-on: ubuntu-latest
+    if: github.event.issue.milestone.title == 'operations'
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up environment variables
-        id: env
-        run: |
-          echo "ISSUE_ID=${{ github.event.issue.node_id }}" >> $GITHUB_ENV
-          echo "TARGET_PROJECT_ID=${{ secrets.TARGET_PROJECT_ID }}" >> $GITHUB_ENV
-          echo "MILESTONE_TITLE=${{ github.event.issue.milestone.title }}" >> $GITHUB_ENV
-
-      - name: Move Issue
-        run: node move-issue.js
-        env:
-          GITHUB_TOKEN: ${{ secrets.MOVE_ISSUE_TOKEN }} # Required for repository access
+      - uses: actions/add-to-project@v0.4.1
+        with:
+          # You can target a project in a different organization
+          # to the issue
+          project-url: https://github.com/orgs/INVIXO/projects/2
+          github-token: ${{ secrets.GHPROJECT_TOKEN }}
