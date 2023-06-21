@@ -5,7 +5,7 @@ on:
     types: [milestoned]
     
 env:
-  MY_GITHUB_TOKEN: ${{ secrets.SEHA_TOKEN }}
+  MY_GITHUB_TOKEN: ${{ secrets.MV_TOKEN }}
 
 jobs:
   # uses: https://github.com/actions/add-to-project
@@ -19,4 +19,4 @@ jobs:
           # You can target a project in a different organization
           # to the issue
           project-url: https://github.com/users/SEHAINVIXO/projects/2
-          github-token: ${{ secrets.SEHA_TOKEN }}
+          github-token: ${{ secrets.MV_TOKEN }}
