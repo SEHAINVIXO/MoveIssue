@@ -18,5 +18,5 @@ jobs:
         with:
           # You can target a project in a different organization
           # to the issue
-          project-url: https://github.com/orgs/INVIXO/projects/2
+          project-url: https://github.com/users/SEHAINVIXO/projects/2
           github-token: ${{ secrets.SEHA_TOKEN }}
